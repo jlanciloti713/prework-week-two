@@ -1,31 +1,36 @@
-class Car
+class Vehicle
+    attr_accessor :color, :honk_horn
 
-attr_accessor :mileage, :color
-
-def initialize(mileage, color)
-    @mileage = mileage
-    @color = color
-end
-
-def honk_horn
-    puts "HONK!"    
-end
-
-end
-
-car = Car.new(232323, "Sea Breeze")
-
-puts car.color
-car.honk_horn
-puts car.mileage
-
-
-class Bike
-
-    attr_accessor :color, :sound_of_horn
-
-    def initialize(color, sound_of_horn)
+    def initialize(color, honk_horn)
         @color = color
+        @honk_horn = honk_horn
+    end
+end
+
+
+
+
+
+
+class Car < Vehicle
+
+    attr_accessor :mileage, :my_bike
+
+    def initialize(mileage, color, honk_horn)
+        @mileage = mileage
+        super(color, honk_horn)
+    end
+end
+
+
+
+
+class Bike < Vehicle
+
+    attr_accessor :sound_of_horn
+
+    def initialize(color, honk_horn, sound_of_horn)
+        super(color, honk_horn)
         @sound_of_horn = sound_of_horn
     end
 
@@ -35,7 +40,18 @@ class Bike
 end
 
 
-bike = Bike.new("Freelance Orange", "My horn sounds like: woop woop")
-p bike.sound_of_horn
-p bike.color
-p bike.rides_bike
+
+car = Car.new(232323, "Sea Breeze", "REEEEEP")
+
+puts car.color
+puts car.honk_horn
+puts car.mileage
+
+bike = Bike.new("Freelance Orange", "woop", "My horn sounds like: woop woop")
+
+car.my_bike = bike
+
+puts car.my_bike.color
+puts car.my_bike.honk_horn
+puts bike.sound_of_horn
+puts car.my_bike.sound_of_horn
